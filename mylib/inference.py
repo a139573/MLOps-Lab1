@@ -2,10 +2,12 @@ import random
 from PIL import Image
 from io import BytesIO
 
-# • Define a method to predict the class of a given image. In this first lab, the class will# 
+
+# • Define a method to predict the class of a given image. In this first lab, the class will#
 # be randomly chosen among a set of class names (of your choice).
 def predict_img_class(img):
-    return random.choice(['cat', 'dog', 'fox'])
+    return random.choice(["cat", "dog", "fox"])
+
 
 # • Define a method to resize an image to a certain size.
 def resize_image(image_bytes: bytes, width: int, height: int) -> bytes:
@@ -18,5 +20,6 @@ def resize_image(image_bytes: bytes, width: int, height: int) -> bytes:
         output = BytesIO()
         resized.save(output, format="JPEG")
         return output.getvalue()
+
 
 # • You can define more methods to preprocess an image (of your choice).

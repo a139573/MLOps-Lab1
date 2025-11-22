@@ -10,16 +10,19 @@ from mylib.cli import cli
 from PIL import Image
 import io
 
+
 # Fixtures
 @pytest.fixture
 def cli_runner():
     """Return a CliRunner instance for invoking CLI commands."""
     return CliRunner()
 
+
 @pytest.fixture
 def sample_path_fixture():
     """Return a sample image path."""
-    return "/home/alumno/Downloads/cat.jpg"
+    return "cat.jpg"
+
 
 @pytest.fixture
 def sample_size_fixture():
@@ -31,17 +34,24 @@ def sample_size_fixture():
 def test_resize(cli_runner, sample_path_fixture, sample_size_fixture):
     width, height = sample_size_fixture
 
-    result = cli_runner.invoke(cli, [
-        "resize",
-        "--path", sample_path_fixture,
-        "--width", str(width),
-        "--height", str(height)
-    ])
+    result = cli_runner.invoke(
+        cli,
+        [
+            "resize",
+            "--path",
+            sample_path_fixture,
+            "--width",
+            str(width),
+            "--height",
+            str(height),
+        ],
+    )
     assert result.exit_code == 0
 
     img_bytes = result.stdout_bytes
     img = Image.open(io.BytesIO(img_bytes))
     assert img.size == (width, height)
+
 
 def test_prediction(cli_runner, sample_path_fixture):
     """Test 'resize' command."""

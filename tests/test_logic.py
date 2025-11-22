@@ -6,10 +6,7 @@ import pytest
 from PIL import Image
 import io
 
-from mylib.inference import (
-    predict_img_class,
-    resize_image
-)
+from mylib.inference import predict_img_class, resize_image
 
 from pathlib import Path
 
@@ -18,11 +15,12 @@ from pathlib import Path
 @pytest.fixture
 def sample_path_fixture():
     """Return a sample image path."""
-    return "/home/alumno/Downloads/cat.jpg"
+    return "cat.jpg"
+
 
 @pytest.fixture
 def sample_bytes_fixture():
-    path = Path("/home/alumno/Downloads/cat.jpg")
+    path = Path("cat.jpg")
     return path.read_bytes()
 
 
